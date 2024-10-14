@@ -1,0 +1,48 @@
+{
+    "attire-version":  "1.1",
+    "execution-data":  {
+                           "execution-source":  "Invoke-Atomicredteam",
+                           "execution-id":  "MDc4ZGZlNmYtZDZmYi00MWE5LWEzN2EtNTgxZTNkYjE1MjFh",
+                           "execution-category":  {
+                                                      "name":  "Atomic Red Team",
+                                                      "abbreviation":  "ART"
+                                                  },
+                           "execution-command":  "Invoke-AtomicTest T1082 -TestGuids 2040405c-eea6-4c1c-aef3-c2acc430fac9 -PathToAtomicsFolder C:\\AtomicRedTeam\\atomics -ExecutionLogPath C:\\AtomicRedTeam\\invoke-atomicredteam\\Logs\\T1082-2040405c-eea6-4c1c-aef3-c2acc430fac9.json -TimeoutSeconds 120 -LoggingModule Attire-ExecutionLogger",
+                           "target":  {
+                                          "user":  "redshirt\\edrba",
+                                          "host":  "RedShirt",
+                                          "ip":  "192.168.56.1",
+                                          "path":  "C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Users\\edrba\\AppData\\Local\\Microsoft\\WindowsApps"
+                                      },
+                           "time-generated":  "2024-10-12T18:09:13.000Z"
+                       },
+    "procedures":  [
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "ESXi - VM Discovery using ESXCLI",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "2040405c-eea6-4c1c-aef3-c2acc430fac9"
+                                            },
+                           "procedure-description":  "An adversary will using ESXCLI to enumerate the Virtual Machines on the host prior to executing power off routine.\n[Reference](https://www.crowdstrike.com/blog/hypervisor-jackpotting-ecrime-actors-increase-targeting-of-esxi-servers/)\n",
+                           "order":  31,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:09:11.000Z",
+                                             "time-stop":  "2024-10-12T18:09:13.000Z",
+                                             "executor":  "command_prompt",
+                                             "command":  "echo \"\" | \"C:\\AtomicRedTeam\\atomics\\..\\ExternalPayloads\\plink.exe\" \"atomic.local\" -ssh  -l \"root\" -pw \"pass\" -m \"C:\\AtomicRedTeam\\atomics\\T1082\\src\\esx_vmdiscovery.txt\"\n",
+                                             "output":  [
+                                                            {
+                                                                "content":  "Unable to open connection:\r\nHost does not exist",
+                                                                "level":  "STDERR",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       }
+                   ]
+}
+

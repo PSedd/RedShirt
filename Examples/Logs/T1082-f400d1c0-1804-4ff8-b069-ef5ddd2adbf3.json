@@ -1,0 +1,48 @@
+{
+    "attire-version":  "1.1",
+    "execution-data":  {
+                           "execution-source":  "Invoke-Atomicredteam",
+                           "execution-id":  "M2ZkOTNhYzYtMzRmZi00YmU3LWJkZDgtNDE0MDk5NTg4NGM1",
+                           "execution-category":  {
+                                                      "name":  "Atomic Red Team",
+                                                      "abbreviation":  "ART"
+                                                  },
+                           "execution-command":  "Invoke-AtomicTest T1082 -TestGuids f400d1c0-1804-4ff8-b069-ef5ddd2adbf3 -PathToAtomicsFolder C:\\AtomicRedTeam\\atomics -ExecutionLogPath C:\\AtomicRedTeam\\invoke-atomicredteam\\Logs\\T1082-f400d1c0-1804-4ff8-b069-ef5ddd2adbf3.json -TimeoutSeconds 120 -LoggingModule Attire-ExecutionLogger",
+                           "target":  {
+                                          "user":  "redshirt\\edrba",
+                                          "host":  "RedShirt",
+                                          "ip":  "192.168.56.1",
+                                          "path":  "C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Users\\edrba\\AppData\\Local\\Microsoft\\WindowsApps"
+                                      },
+                           "time-generated":  "2024-10-12T18:06:26.000Z"
+                       },
+    "procedures":  [
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "Environment variables discovery on windows",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "f400d1c0-1804-4ff8-b069-ef5ddd2adbf3"
+                                            },
+                           "procedure-description":  "Identify all environment variables. Upon execution, environments variables and your path info will be displayed.\n",
+                           "order":  11,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:06:26.000Z",
+                                             "time-stop":  "2024-10-12T18:06:26.000Z",
+                                             "executor":  "command_prompt",
+                                             "command":  "set\n",
+                                             "output":  [
+                                                            {
+                                                                "content":  "ALLUSERSPROFILE=C:\\ProgramData\r\nAPPDATA=C:\\Users\\edrba\\AppData\\Roaming\r\nCommonProgramFiles=C:\\Program Files\\Common Files\r\nCommonProgramFiles(x86)=C:\\Program Files (x86)\\Common Files\r\nCommonProgramW6432=C:\\Program Files\\Common Files\r\nCOMPUTERNAME=REDSHIRT\r\nComSpec=C:\\Windows\\system32\\cmd.exe\r\nDriverData=C:\\Windows\\System32\\Drivers\\DriverData\r\nHOMEDRIVE=C:\r\nHOMEPATH=\\Users\\edrba\r\nLOCALAPPDATA=C:\\Users\\edrba\\AppData\\Local\r\nLOGONSERVER=\\\\REDSHIRT\r\nNUMBER_OF_PROCESSORS=4\r\nOneDrive=C:\\Users\\edrba\\OneDrive\r\nOneDriveConsumer=C:\\Users\\edrba\\OneDrive\r\nOS=Windows_NT\r\nPath=C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Users\\edrba\\AppData\\Local\\Microsoft\\WindowsApps\r\nPATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL\r\nPROCESSOR_ARCHITECTURE=AMD64\r\nPROCESSOR_IDENTIFIER=Intel64 Family 15 Model 107 Stepping 1, GenuineIntel\r\nPROCESSOR_REVISION=6b01\r\nProgramData=C:\\ProgramData\r\nProgramFiles=C:\\Program Files\r\nProgramFiles(x86)=C:\\Program Files (x86)\r\nProgramW6432=C:\\Program Files\r\nPROMPT=$P$G\r\nPSExecutionPolicyPreference=Bypass\r\nPSModulePath=C:\\Users\\edrba\\OneDrive\\Documents\\WindowsPowerShell\\Modules;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\r\nPUBLIC=C:\\Users\\Public\r\nSystemDrive=C:\r\nSystemRoot=C:\\Windows\r\nTEMP=C:\\Users\\edrba\\AppData\\Local\\Temp\r\nTMP=C:\\Users\\edrba\\AppData\\Local\\Temp\r\nUSERDOMAIN=REDSHIRT\r\nUSERDOMAIN_ROAMINGPROFILE=REDSHIRT\r\nUSERNAME=edrba\r\nUSERPROFILE=C:\\Users\\edrba\r\nwindir=C:\\Windows\r\nPROCESSOR_LEVEL=15",
+                                                                "level":  "STDOUT",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       }
+                   ]
+}
+

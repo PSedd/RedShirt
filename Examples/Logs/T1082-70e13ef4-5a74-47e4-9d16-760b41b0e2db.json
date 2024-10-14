@@ -1,0 +1,48 @@
+{
+    "attire-version":  "1.1",
+    "execution-data":  {
+                           "execution-source":  "Invoke-Atomicredteam",
+                           "execution-id":  "OGMwZDc0NjEtZGE0OS00NDI4LTkzMDMtZmJkNmJmYzkzYmIz",
+                           "execution-category":  {
+                                                      "name":  "Atomic Red Team",
+                                                      "abbreviation":  "ART"
+                                                  },
+                           "execution-command":  "Invoke-AtomicTest T1082 -TestGuids 70e13ef4-5a74-47e4-9d16-760b41b0e2db -PathToAtomicsFolder C:\\AtomicRedTeam\\atomics -ExecutionLogPath C:\\AtomicRedTeam\\invoke-atomicredteam\\Logs\\T1082-70e13ef4-5a74-47e4-9d16-760b41b0e2db.json -TimeoutSeconds 120 -LoggingModule Attire-ExecutionLogger",
+                           "target":  {
+                                          "user":  "redshirt\\edrba",
+                                          "host":  "RedShirt",
+                                          "ip":  "192.168.56.1",
+                                          "path":  "C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Users\\edrba\\AppData\\Local\\Microsoft\\WindowsApps"
+                                      },
+                           "time-generated":  "2024-10-12T18:09:26.000Z"
+                       },
+    "procedures":  [
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "operating system discovery ",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "70e13ef4-5a74-47e4-9d16-760b41b0e2db"
+                                            },
+                           "procedure-description":  "operating system discovery using get-ciminstance\nhttps://petri.com/getting-operating-system-information-powershell/",
+                           "order":  34,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:09:24.000Z",
+                                             "time-stop":  "2024-10-12T18:09:26.000Z",
+                                             "executor":  "powershell",
+                                             "command":  "Get-CimInstance Win32_OperatingSystem | Select-Object Caption, Version, ServicePackMajorVersion, OSArchitecture, CSName, WindowsDirectory | Out-null",
+                                             "output":  [
+                                                            {
+                                                                "content":  "",
+                                                                "level":  "STDOUT",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       }
+                   ]
+}
+

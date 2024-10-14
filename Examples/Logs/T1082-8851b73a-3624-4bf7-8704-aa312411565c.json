@@ -1,0 +1,53 @@
+{
+    "attire-version":  "1.1",
+    "execution-data":  {
+                           "execution-source":  "Invoke-Atomicredteam",
+                           "execution-id":  "ZGQwYzQwNTgtMjI1ZS00M2MyLWJmMmItNDI3YTI2Mzg0MTQw",
+                           "execution-category":  {
+                                                      "name":  "Atomic Red Team",
+                                                      "abbreviation":  "ART"
+                                                  },
+                           "execution-command":  "Invoke-AtomicTest T1082 -TestGuids 8851b73a-3624-4bf7-8704-aa312411565c -PathToAtomicsFolder C:\\AtomicRedTeam\\atomics -ExecutionLogPath C:\\AtomicRedTeam\\invoke-atomicredteam\\Logs\\T1082-8851b73a-3624-4bf7-8704-aa312411565c.json -TimeoutSeconds 120 -LoggingModule Attire-ExecutionLogger",
+                           "target":  {
+                                          "user":  "redshirt\\edrba",
+                                          "host":  "RedShirt",
+                                          "ip":  "192.168.56.1",
+                                          "path":  "C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Users\\edrba\\AppData\\Local\\Microsoft\\WindowsApps"
+                                      },
+                           "time-generated":  "2024-10-12T18:07:52.000Z"
+                       },
+    "procedures":  [
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "System Information Discovery with WMIC",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "8851b73a-3624-4bf7-8704-aa312411565c"
+                                            },
+                           "procedure-description":  "Identify system information with the WMI command-line (WMIC) utility. Upon execution, various system information will be displayed, including: OS, CPU, GPU, and disk drive names; memory capacity; display resolution; and baseboard, BIOS, and GPU driver products/versions.\nhttps://nwgat.ninja/getting-system-information-with-wmic-on-windows/\nElements of this test were observed in the wild used by Aurora Stealer in late 2022 and early 2023, as highlighted in public reporting:\nhttps://blog.sekoia.io/aurora-a-rising-stealer-flying-under-the-radar\nhttps://blog.cyble.com/2023/01/18/aurora-a-stealer-using-shapeshifting-tactics/\n",
+                           "order":  27,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:07:52.000Z",
+                                             "time-stop":  "2024-10-12T18:07:52.000Z",
+                                             "executor":  "command_prompt",
+                                             "command":  "wmic cpu get name\nwmic MEMPHYSICAL get MaxCapacity\nwmic baseboard get product\nwmic baseboard get version\nwmic bios get SMBIOSBIOSVersion\nwmic path win32_VideoController get name\nwmic path win32_VideoController get DriverVersion\nwmic path win32_VideoController get VideoModeDescription\nwmic OS get Caption,OSArchitecture,Version\nwmic DISKDRIVE get Caption\nGet-WmiObject win32_bios\n",
+                                             "output":  [
+                                                            {
+                                                                "content":  "Name                           \r\nQEMU Virtual CPU version 2.5+  \r\nMaxCapacity  \r\n8388608      \r\nSMBIOSBIOSVersion  \r\n4.2023.08-4        \r\nName                             \r\nMicrosoft Basic Display Adapter  \r\nDriverVersion  \r\n10.0.22000.1   \r\nVideoModeDescription            \r\n1280 x 800 x 4294967296 colors  \r\nCaption                   OSArchitecture  Version     \r\nMicrosoft Windows 11 Pro  64-bit          10.0.22000  \r\nCaption        \r\nQEMU HARDDISK",
+                                                                "level":  "STDOUT",
+                                                                "type":  "console"
+                                                            },
+                                                            {
+                                                                "content":  "No Instance(s) Available.\r\nNo Instance(s) Available.\r\nGet-WmiObject is not recognized as an internal or external command,\r\noperable program or batch file.",
+                                                                "level":  "STDERR",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       }
+                   ]
+}
+

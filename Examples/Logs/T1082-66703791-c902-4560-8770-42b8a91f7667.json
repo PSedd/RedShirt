@@ -1,0 +1,48 @@
+{
+    "attire-version":  "1.1",
+    "execution-data":  {
+                           "execution-source":  "Invoke-Atomicredteam",
+                           "execution-id":  "YTMwMTRlYzgtYmIyYi00YmFmLThlN2QtYTMzNTM1ZjAxOTdi",
+                           "execution-category":  {
+                                                      "name":  "Atomic Red Team",
+                                                      "abbreviation":  "ART"
+                                                  },
+                           "execution-command":  "Invoke-AtomicTest T1082 -TestGuids 66703791-c902-4560-8770-42b8a91f7667 -PathToAtomicsFolder C:\\AtomicRedTeam\\atomics -ExecutionLogPath C:\\AtomicRedTeam\\invoke-atomicredteam\\Logs\\T1082-66703791-c902-4560-8770-42b8a91f7667.json -TimeoutSeconds 120 -LoggingModule Attire-ExecutionLogger",
+                           "target":  {
+                                          "user":  "redshirt\\edrba",
+                                          "host":  "RedShirt",
+                                          "ip":  "192.168.56.1",
+                                          "path":  "C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Users\\edrba\\AppData\\Local\\Microsoft\\WindowsApps"
+                                      },
+                           "time-generated":  "2024-10-12T18:06:06.000Z"
+                       },
+    "procedures":  [
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "System Information Discovery",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "66703791-c902-4560-8770-42b8a91f7667"
+                                            },
+                           "procedure-description":  "Identify System Info. Upon execution, system info and time info will be displayed.\n",
+                           "order":  1,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:06:03.000Z",
+                                             "time-stop":  "2024-10-12T18:06:06.000Z",
+                                             "executor":  "command_prompt",
+                                             "command":  "systeminfo\nreg query HKLM\\SYSTEM\\CurrentControlSet\\Services\\Disk\\Enum\n",
+                                             "output":  [
+                                                            {
+                                                                "content":  "Host Name:                 REDSHIRT\r\nOS Name:                   Microsoft Windows 11 Pro\r\nOS Version:                10.0.22000 N/A Build 22000\r\nOS Manufacturer:           Microsoft Corporation\r\nOS Configuration:          Standalone Workstation\r\nOS Build Type:             Multiprocessor Free\r\nRegistered Owner:          edrbastester@hotmail.com\r\nRegistered Organization:   \r\nProduct ID:                00330-80000-00000-AA011\r\nOriginal Install Date:     10/12/2024, 4:18:36 AM\r\nSystem Boot Time:          10/12/2024, 4:39:49 AM\r\nSystem Manufacturer:       QEMU\r\nSystem Model:              Standard PC (Q35 + ICH9, 2009)\r\nSystem Type:               x64-based PC\r\nProcessor(s):              1 Processor(s) Installed.\r\n                           [01]: Intel64 Family 15 Model 107 Stepping 1 GenuineIntel ~1608 Mhz\r\nBIOS Version:              Proxmox distribution of EDK II 4.2023.08-4, 2/15/2024\r\nWindows Directory:         C:\\Windows\r\nSystem Directory:          C:\\Windows\\system32\r\nBoot Device:               \\Device\\HarddiskVolume1\r\nSystem Locale:             en-us;English (United States)\r\nInput Locale:              en-us;English (United States)\r\nTime Zone:                 (UTC) Coordinated Universal Time\r\nTotal Physical Memory:     8,154 MB\r\nAvailable Physical Memory: 4,407 MB\r\nVirtual Memory: Max Size:  10,074 MB\r\nVirtual Memory: Available: 6,639 MB\r\nVirtual Memory: In Use:    3,435 MB\r\nPage File Location(s):     C:\\pagefile.sys\r\nDomain:                    WORKGROUP\r\nLogon Server:              \\\\REDSHIRT\r\nHotfix(s):                 9 Hotfix(s) Installed.\r\n                           [01]: KB5030650\r\n                           [02]: KB5030842\r\n                           [03]: KB5010690\r\n                           [04]: KB5011048\r\n                           [05]: KB5026038\r\n                           [06]: KB5026910\r\n                           [07]: KB5031358\r\n                           [08]: KB5031591\r\n                           [09]: KB5006755\r\nNetwork Card(s):           3 NIC(s) Installed.\r\n                           [01]: Intel(R) 82574L Gigabit Network Connection\r\n                                 Connection Name: Ethernet\r\n                                 DHCP Enabled:    Yes\r\n                                 DHCP Server:     10.0.2.1\r\n                                 IP address(es)\r\n                                 [01]: 10.0.2.100\r\n                                 [02]: fe80::d625:f1bc:303c:8c4f\r\n                           [02]: Microsoft KM-TEST Loopback Adapter\r\n                                 Connection Name: Npcap Loopback Adapter\r\n                                 DHCP Enabled:    Yes\r\n                                 DHCP Server:     255.255.255.255\r\n                                 IP address(es)\r\n                                 [01]: 169.254.11.76\r\n                                 [02]: fe80::a21e:6c28:b27d:de94\r\n                           [03]: VirtualBox Host-Only Ethernet Adapter\r\n                                 Connection Name: VirtualBox Host-Only Network\r\n                                 DHCP Enabled:    No\r\n                                 IP address(es)\r\n                                 [01]: 192.168.56.1\r\n                                 [02]: fe80::4d06:d747:24bf:784\r\nHyper-V Requirements:      A hypervisor has been detected. Features required for Hyper-V will not be displayed.\r\nHKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Disk\\Enum\r\n    0    REG_SZ    SCSI\\DiskVen_QEMUProd_HARDDISK\\4354248670000000\r\n    Count    REG_DWORD    0x1\r\n    NextInstance    REG_DWORD    0x1",
+                                                                "level":  "STDOUT",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       }
+                   ]
+}
+

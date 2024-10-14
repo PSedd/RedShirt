@@ -1,0 +1,48 @@
+{
+    "attire-version":  "1.1",
+    "execution-data":  {
+                           "execution-source":  "Invoke-Atomicredteam",
+                           "execution-id":  "MjY2OTBmNDYtMzA5Mi00NWNjLTk3ZTgtNzVjNGEyOTJjNzRm",
+                           "execution-category":  {
+                                                      "name":  "Atomic Red Team",
+                                                      "abbreviation":  "ART"
+                                                  },
+                           "execution-command":  "Invoke-AtomicTest T1082 -TestGuids 69bd4abe-8759-49a6-8d21-0f15822d6370 -PathToAtomicsFolder C:\\AtomicRedTeam\\atomics -ExecutionLogPath C:\\AtomicRedTeam\\invoke-atomicredteam\\Logs\\T1082-69bd4abe-8759-49a6-8d21-0f15822d6370.json -TimeoutSeconds 120 -LoggingModule Attire-ExecutionLogger",
+                           "target":  {
+                                          "user":  "redshirt\\edrba",
+                                          "host":  "RedShirt",
+                                          "ip":  "192.168.56.1",
+                                          "path":  "C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Users\\edrba\\AppData\\Local\\Microsoft\\WindowsApps"
+                                      },
+                           "time-generated":  "2024-10-12T18:06:21.000Z"
+                       },
+    "procedures":  [
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "Griffon Recon",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "69bd4abe-8759-49a6-8d21-0f15822d6370"
+                                            },
+                           "procedure-description":  "This script emulates the reconnaissance script seen in used by Griffon and was modified by security researcher Kirk Sayre \nin order simply print the recon results to the screen as opposed to exfiltrating them. [Script](https://gist.github.com/kirk-sayre-work/7cb5bf4e2c7c77fa5684ddc17053f1e5).  \nFor more information see also [https://malpedia.caad.fkie.fraunhofer.de/details/js.griffon](https://malpedia.caad.fkie.fraunhofer.de/details/js.griffon) and [https://attack.mitre.org/software/S0417/](https://attack.mitre.org/software/S0417/)",
+                           "order":  10,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:06:19.000Z",
+                                             "time-stop":  "2024-10-12T18:06:21.000Z",
+                                             "executor":  "powershell",
+                                             "command":  "cscript \"C:\\AtomicRedTeam\\atomics\\T1082\\src\\griffon_recon.vbs\"\n",
+                                             "output":  [
+                                                            {
+                                                                "content":  "Microsoft (R) Windows Script Host Version 5.812\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nid=0A0027000021type=putHostname=RedShirtDomainMember=noDomainName=WORKGROUPDomainHosts=-1UserName=edrbaLogicalDrives=C:;D:;SystemInfo=Hostname:REDSHIRT%%%Name_OS:Microsoft Windows 11 Pro%%%Version_OS:10.0.22000 BuildNumber : 22000%%%Manufacturer_OS:Microsoft Corporation%%%ProductType_OS:%%%BuildType_OS:Multiprocessor Free%%%RegisteredUser:edrbastester@hotmail.com%%%Organization:%%%SerialNumber:00330-80000-00000-AA011%%%InstallDate:12.10.2024, 04:18:36%%%LastBootUpTime:12.10.2024, 04:39:49%%%%%%%%%%%%MaxNumberOfProcesses:-1%%%SystemType:x64-based PC%%%TotalPhysicalMemory:8550596608%%%Domain:WORKGROUP%%%System_manufacturer:QEMU%%%System_model:Standard PC (Q35 + ICH9, 2009)%%%Processor1: Intel64 Family 15 Model 107 Stepping 1 ~1608 Mhz%%%BIOS_version:4.2023.08-4, 4.2023.08-4, 15.02.2024%%%WindowsDirectory:C:\\Windows%%%SystemDirectory:C:\\Windows\\system32%%%BootDevice:\\Device\\HarddiskVolume1%%%OSLanguage:1033;English D%%%MUILanguages:en-US%%%CurrentTimeZone:UTC-00:00%%%%%%FreePhysicalMemory:4544216%%%TotalVirtualMemorySize:10316272%%%FreeVirtualMemory:6805828%%%Paging file location1: C:\\pagefile.sys%%%QuickFixEngineering_Count-9: %%%QuickFixEngineering1: KB5030650%%%QuickFixEngineering2: KB5030842%%%QuickFixEngineering3: KB5010690%%%QuickFixEngineering4: KB5011048%%%QuickFixEngineering5: KB5026038%%%QuickFixEngineering6: KB5026910%%%QuickFixEngineering7: KB5031358%%%QuickFixEngineering8: KB5031591%%%QuickFixEngineering9: KB5006755%%%NetworkAdapter_Count -3: %%%NetworkAdapter1: Intel(R) 82574L Gigabit Network Connection%%%Connection name: Ethernet%%%DHCPEnabled:True%%%DHCPServer:10.0.2.1%%%IPAddress:10.0.2.100,fe80::d625:f1bc:303c:8c4f%%%NetworkAdapter2: Npcap Loopback Adapter%%%Connection name: Npcap Loopback Adapter%%%DHCPEnabled:True%%%DHCPServer:255.255.255.255%%%IPAddress:169.254.11.76,fe80::a21e:6c28:b27d:de94%%%NetworkAdapter3: VirtualBox Host-Only Ethernet Adapter%%%Connection name: VirtualBox Host-Only Network%%%IPAddress:192.168.56.1,fe80::4d06:d747:24bf:784%%%SoftwareInfo=NetworkInfo=Adapter:Ethernet%%%DNSDomainSuffix:gamesofalltime.com%%%MACAddress:BC:24:11:EF:12:CB%%%DHCPEnabled:True%%%IPAddress:10.0.2.100,fe80::d625:f1bc:303c:8c4f%%%IPSubnet:255.255.255.0,64%%%DefaultIPGateway:10.0.2.1%%%DHCPServer:10.0.2.1%%%DNSServers:10.0.2.2,8.8.8.8,8.8.4.4%%%Adapter:Npcap Loopback Adapter%%%DNSDomainSuffix:gamesofalltime.com%%%MACAddress:02:00:4C:4F:4F:50%%%DHCPEnabled:True%%%IPAddress:169.254.11.76,fe80::a21e:6c28:b27d:de94%%%IPSubnet:255.255.0.0,64%%%DHCPServer:255.255.255.255%%%DNSServers:%%%Adapter:VirtualBox Host-Only Network%%%DNSDomainSuffix:gamesofalltime.com%%%MACAddress:0A:00:27:00:00:21%%%DHCPEnabled:False%%%IPAddress:192.168.56.1,fe80::4d06:d747:24bf:784%%%IPSubnet:255.255.255.0,64%%%DNSServers:%%%ProcessList=DesktopFileList=desktop.ini%%%DiskCryptor.lnk%%%Microsoft Edge.lnk%%%Opera Browser.lnk%%%DesktopScreenshot=NoScreenshotWebHistory=nothingSecurityInfo=Current_user: adminAntiVirus:Windows Defender%%%%%%Admin_privileges: EnabledUACInfoUAC: OnWill you be prompted to allow elevation for administrator: YesPrompt window for elevation permission: On secure desktop",
+                                                                "level":  "STDOUT",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       }
+                   ]
+}
+

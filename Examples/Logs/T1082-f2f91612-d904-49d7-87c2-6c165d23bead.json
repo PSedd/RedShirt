@@ -1,0 +1,53 @@
+{
+    "attire-version":  "1.1",
+    "execution-data":  {
+                           "execution-source":  "Invoke-Atomicredteam",
+                           "execution-id":  "NWVmM2FmMDctNjVhNS00ZjA4LTg5M2UtNmU2MTZkODA1M2U3",
+                           "execution-category":  {
+                                                      "name":  "Atomic Red Team",
+                                                      "abbreviation":  "ART"
+                                                  },
+                           "execution-command":  "Invoke-AtomicTest T1082 -TestGuids f2f91612-d904-49d7-87c2-6c165d23bead -PathToAtomicsFolder C:\\AtomicRedTeam\\atomics -ExecutionLogPath C:\\AtomicRedTeam\\invoke-atomicredteam\\Logs\\T1082-f2f91612-d904-49d7-87c2-6c165d23bead.json -TimeoutSeconds 120 -LoggingModule Attire-ExecutionLogger",
+                           "target":  {
+                                          "user":  "redshirt\\edrba",
+                                          "host":  "RedShirt",
+                                          "ip":  "192.168.56.1",
+                                          "path":  "C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Users\\edrba\\AppData\\Local\\Microsoft\\WindowsApps"
+                                      },
+                           "time-generated":  "2024-10-12T18:09:06.000Z"
+                       },
+    "procedures":  [
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "BIOS Information Discovery through Registry",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "f2f91612-d904-49d7-87c2-6c165d23bead"
+                                            },
+                           "procedure-description":  "Looks up for BIOS information in the registry. BIOS information is often read in order to detect sandboxing environments.  Upon execution, BIOS information will be displayed.\n- https://tria.ge/210111-eaz8mqhgh6/behavioral1\n- https://evasions.checkpoint.com/techniques/registry.html\n",
+                           "order":  30,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:09:06.000Z",
+                                             "time-stop":  "2024-10-12T18:09:06.000Z",
+                                             "executor":  "command_prompt",
+                                             "command":  "reg query HKEY_LOCAL_MACHINE\\HARDWARE\\DESCRIPTION\\System /v SystemBiosVersion\nreg query HKEY_LOCAL_MACHINE\\HARDWARE\\DESCRIPTION\\System /v VideoBiosVersion\n",
+                                             "output":  [
+                                                            {
+                                                                "content":  "HKEY_LOCAL_MACHINE\\HARDWARE\\DESCRIPTION\\System\r\n    SystemBiosVersion    REG_MULTI_SZ    BOCHS  - 1\\04.2023.08-4\\0Proxmox distribution of EDK II - 10000",
+                                                                "level":  "STDOUT",
+                                                                "type":  "console"
+                                                            },
+                                                            {
+                                                                "content":  "ERROR: The system was unable to find the specified registry key or value.",
+                                                                "level":  "STDERR",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       }
+                   ]
+}
+

